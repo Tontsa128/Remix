@@ -1,0 +1,34 @@
+[
+  {
+    "route": "/",
+    "viewport": "desktop",
+    "trigger": "Aloita sanastoharjoitus",
+    "expected": "Theme chooser",
+    "observed": [
+      "Sulje harjoitus",
+      "Tervehtiminen ja tutustuminen",
+      "Keskustelu ja avun pyytäminen",
+      "Matkustaminen ja majoitus",
+      "Ruoka ja kahvila",
+      "Ostokset ja maksaminen"
+    ],
+    "status": "pass",
+    "artifact": "/tmp/browser/kielikurssi/source-desktop-lesson.png"
+  },
+  {
+    "route": "/",
+    "viewport": "phone",
+    "trigger": "Aloita sanastoharjoitus",
+    "expected": "Theme chooser",
+    "observed": [
+      "Sulje harjoitus",
+      "Tervehtiminen ja tutustuminen",
+      "Keskustelu ja avun pyytäminen",
+      "Matkustaminen ja majoitus",
+      "Ruoka ja kahvila",
+      "Ostokset ja maksaminen"
+    ],
+    "status": "pass",
+    "artifact": "/tmp/browser/kielikurssi/source-phone-lesson.png"
+  }
+]

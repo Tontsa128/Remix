@@ -1,0 +1,90 @@
+[
+  {
+    "origin": "source",
+    "route": "/",
+    "viewport": {
+      "width": 1280,
+      "height": 1800
+    },
+    "controls": [
+      "language change/save",
+      "profile persistence",
+      "lesson/theme/answer/next/close",
+      "visual answer",
+      "visual modes",
+      "interpreter/text mode/translation notice/back",
+      "AI tutor sign-in notice"
+    ],
+    "status": "pass",
+    "errors": [
+      "Cannot read properties of null (reading 'isStreaming')"
+    ],
+    "overflow": false,
+    "artifactPrefix": "/tmp/browser/kielikurssi/source-desktop"
+  },
+  {
+    "origin": "source",
+    "route": "/",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "controls": [
+      "language change/save",
+      "profile persistence",
+      "lesson/theme/answer/next/close",
+      "visual answer",
+      "visual modes",
+      "interpreter/text mode/translation notice/back",
+      "AI tutor sign-in notice"
+    ],
+    "status": "pass",
+    "errors": [
+      "Cannot read properties of null (reading 'isStreaming')"
+    ],
+    "overflow": false,
+    "artifactPrefix": "/tmp/browser/kielikurssi/source-phone"
+  },
+  {
+    "origin": "preview",
+    "route": "/",
+    "viewport": {
+      "width": 1280,
+      "height": 1800
+    },
+    "controls": [
+      "language change/save",
+      "profile persistence",
+      "lesson/theme/answer/next/close",
+      "visual answer",
+      "visual modes",
+      "interpreter/text mode/translation notice/back",
+      "AI tutor sign-in notice"
+    ],
+    "status": "pass",
+    "errors": [],
+    "overflow": false,
+    "artifactPrefix": "/tmp/browser/kielikurssi/preview-desktop"
+  },
+  {
+    "origin": "preview",
+    "route": "/",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "controls": [
+      "language change/save",
+      "profile persistence",
+      "lesson/theme/answer/next/close",
+      "visual answer",
+      "visual modes",
+      "interpreter/text mode/translation notice/back",
+      "AI tutor sign-in notice"
+    ],
+    "status": "pass",
+    "errors": [],
+    "overflow": false,
+    "artifactPrefix": "/tmp/browser/kielikurssi/preview-phone"
+  }
+]

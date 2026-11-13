@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "Elovio",
+    "slug": "elovio",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.elovio.app"
+    },
+    "android": {
+      "package": "com.elovio.app",
+      "googleServicesFile": "./google-services.json"
+    },
+    "plugins": [
+      "expo-sqlite",
+      "@react-native-firebase/app",
+      "@react-native-firebase/crashlytics",
+      [
+        "expo-audio",
+        {
+          "microphonePermission": "Allow Elovio to use the microphone for live interpretation.",
+          "enableBackgroundRecording": false
+        }
+      ]
+    ]
+  }
+}

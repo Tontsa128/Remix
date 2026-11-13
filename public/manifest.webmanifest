@@ -1,0 +1,33 @@
+{
+  "id": "/",
+  "name": "Elovio – Kielikurssi & Tulkki",
+  "short_name": "Elovio",
+  "description": "Opi suomea, espanjaa ja englantia arkitilanteiden ja live-tulkin avulla.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "lang": "fi",
+  "theme_color": "#1E3F35",
+  "background_color": "#FAF9F6",
+  "icons": [
+    {
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

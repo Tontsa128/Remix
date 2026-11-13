@@ -1,0 +1,63 @@
+name: Elovio mobile quality
+
+on:
+  push:
+    branches: [main, "fix/**", "feat/**"]
+    paths:
+      - "apps/mobile/**"
+      - "supabase/migrations/**"
+      - ".github/workflows/mobile-quality.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "apps/mobile/**"
+      - "supabase/migrations/**"
+      - ".github/workflows/mobile-quality.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: elovio-mobile-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Expo SDK 58 · Android and Web
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    defaults:
+      run:
+        working-directory: apps/mobile
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24.12"
+          cache: npm
+          cache-dependency-path: apps/mobile/package-lock.json
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Block high and critical dependency vulnerabilities
+        run: npm audit --audit-level=high
+      - name: Run mobile learning and security tests
+        run: npm test
+      - name: Validate Expo dependency compatibility
+        run: npm run doctor
+      - name: TypeScript check
+        run: npm run typecheck
+      - name: Validate Android native project
+        run: npx expo prebuild --platform android --no-install --clean
+      - name: Validate iOS native project
+        if: hashFiles('apps/mobile/GoogleService-Info.plist') != ''
+        run: npx expo prebuild --platform ios --no-install --clean
+      - name: Report missing iOS Firebase configuration
+        if: hashFiles('apps/mobile/GoogleService-Info.plist') == ''
+        run: echo "::warning::iOS prebuild skipped because Firebase GoogleService-Info.plist has not been provided. Android and shared Expo checks still run; iOS native build remains blocked until the real file is added."
+      - name: Export Android bundle
+        run: npx expo export --platform android
+      - name: Export web bundle
+        run: npx expo export --platform web

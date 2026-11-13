@@ -1,0 +1,295 @@
+/*
+ * Tailwind v4 entry: config lives here, with no tailwind.config.js or PostCSS plugin.
+ * - Keep every @import in this top block, above @theme and the rest of the file. Install an
+ *   npm package before @importing its CSS. Never @import a remote URL (web fonts, CDN CSS): the
+ *   build resolves @import from the filesystem. Load those with a <link> in the head() of
+ *   src/routes/__root.tsx and name the family in a --font-* token in @theme inline below.
+ */
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition.
+ *
+ * The design lives in this file: oklch color tokens on the shadcn variables
+ * (--background, --foreground, --primary, --secondary, --muted, --accent, ...) plus
+ * new tokens as needed, font tokens, and custom styles and animations.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.129 0.042 264.695);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.129 0.042 264.695);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.129 0.042 264.695);
+  --primary: oklch(0.208 0.042 265.755);
+  --primary-foreground: oklch(0.984 0.003 247.858);
+  --secondary: oklch(0.968 0.007 247.896);
+  --secondary-foreground: oklch(0.208 0.042 265.755);
+  --muted: oklch(0.968 0.007 247.896);
+  --muted-foreground: oklch(0.554 0.046 257.417);
+  --accent: oklch(0.968 0.007 247.896);
+  --accent-foreground: oklch(0.208 0.042 265.755);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(0.929 0.013 255.508);
+  --input: oklch(0.929 0.013 255.508);
+  --ring: oklch(0.704 0.04 256.788);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.984 0.003 247.858);
+  --sidebar-foreground: oklch(0.129 0.042 264.695);
+  --sidebar-primary: oklch(0.208 0.042 265.755);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.968 0.007 247.896);
+  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
+  --sidebar-border: oklch(0.929 0.013 255.508);
+  --sidebar-ring: oklch(0.704 0.04 256.788);
+}
+
+.dark {
+  --background: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.984 0.003 247.858);
+  --card: oklch(0.208 0.042 265.755);
+  --card-foreground: oklch(0.984 0.003 247.858);
+  --popover: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.929 0.013 255.508);
+  --primary-foreground: oklch(0.208 0.042 265.755);
+  --secondary: oklch(0.279 0.041 260.031);
+  --secondary-foreground: oklch(0.984 0.003 247.858);
+  --muted: oklch(0.279 0.041 260.031);
+  --muted-foreground: oklch(0.704 0.04 256.788);
+  --accent: oklch(0.279 0.041 260.031);
+  --accent-foreground: oklch(0.984 0.003 247.858);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.551 0.027 264.364);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.208 0.042 265.755);
+  --sidebar-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.279 0.041 260.031);
+  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.551 0.027 264.364);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+}
+
+/* Original Elovio source palette, preserved as design tokens. */
+:root {
+  --elovio-source-1: oklch(0.441077 0.057037 166.802);
+  --elovio-source-2: oklch(0.608149 0.023006 156.473);
+  --elovio-source-3: oklch(1.000000 0.000000 89.876);
+  --elovio-source-4: oklch(0.972529 0.006702 97.351);
+  --elovio-source-5: oklch(0.540541 0.021784 162.386);
+  --elovio-source-6: oklch(0.329138 0.047117 171.308);
+  --elovio-source-7: oklch(0.485328 0.026149 163.643);
+  --elovio-source-8: oklch(0.930541 0.009570 119.585);
+  --elovio-source-9: oklch(0.894016 0.011424 141.260);
+  --elovio-source-10: oklch(0.948646 0.011257 141.263);
+  --elovio-source-11: oklch(0.373711 0.041835 169.396);
+  --elovio-source-12: oklch(0.354953 0.042039 169.103);
+  --elovio-source-13: oklch(0.610307 0.019324 158.802);
+  --elovio-source-14: oklch(0.912548 0.015429 145.447);
+  --elovio-source-15: oklch(0.388330 0.055039 166.476);
+  --elovio-source-16: oklch(0.441087 0.084928 21.092);
+  --elovio-source-17: oklch(0.475292 0.135353 23.813);
+  --elovio-source-18: oklch(0.931309 0.009393 113.168);
+  --elovio-source-19: oklch(0.924465 0.011330 141.262);
+  --elovio-source-20: oklch(0.541371 0.070581 161.458);
+  --elovio-source-21: oklch(0.888886 0.014883 142.224);
+  --elovio-source-22: oklch(0.977749 0.006597 106.521);
+  --elovio-source-23: oklch(0.930758 0.016786 178.257);
+  --elovio-source-24: oklch(0.847186 0.118671 83.483);
+  --elovio-source-25: oklch(0.735080 0.074238 144.182);
+  --elovio-source-26: oklch(0.983503 0.017058 84.587);
+  --elovio-source-27: oklch(0.380546 0.055812 166.696);
+  --elovio-source-28: oklch(0.729981 0.100521 64.154);
+  --elovio-source-29: oklch(0.611102 0.104679 41.693);
+  --elovio-source-30: oklch(0.863073 0.020526 150.061);
+  --elovio-source-31: oklch(0.768784 0.020924 154.776);
+  --elovio-source-32: oklch(0.652219 0.026175 158.787);
+  --elovio-source-33: oklch(0.757957 0.081115 58.020);
+  --elovio-source-34: oklch(0.450902 0.034555 171.333);
+  --elovio-source-35: oklch(0.805924 0.122044 82.772);
+  --elovio-source-36: oklch(0.589738 0.085567 73.282);
+  --elovio-source-37: oklch(0.858287 0.034913 196.519);
+  --elovio-source-38: oklch(0.931390 0.042288 85.957);
+  --elovio-source-39: oklch(0.964675 0.059209 95.884);
+  --elovio-source-40: oklch(0.394193 0.015705 171.548);
+  --elovio-source-41: oklch(0.895056 0.009704 140.515);
+  --elovio-source-42: oklch(0.962455 0.008986 134.873);
+  --elovio-source-43: oklch(0.497312 0.099058 156.876);
+  --elovio-source-44: oklch(0.535295 0.103536 54.043);
+  --elovio-source-45: oklch(0.556717 0.018837 156.559);
+  --elovio-source-46: oklch(0.363548 0.047135 165.413);
+  --elovio-source-47: oklch(0.959658 0.012913 141.811);
+  --elovio-source-48: oklch(0.955562 0.012759 48.590);
+  --elovio-source-49: oklch(0.916462 0.016962 88.003);
+  --elovio-source-50: oklch(0.945306 0.021705 83.264);
+  --elovio-source-51: oklch(0.666864 0.074188 61.096);
+  --elovio-source-52: oklch(0.980524 0.021102 85.942);
+  --elovio-source-53: oklch(0.861918 0.034244 95.910);
+  --elovio-source-54: oklch(0.424522 0.059115 52.654);
+  --elovio-source-55: oklch(0.697978 0.088512 54.655);
+  --elovio-source-56: oklch(0.552854 0.048653 173.751);
+  --elovio-source-57: oklch(0.544785 0.020789 160.633);
+  --elovio-source-58: oklch(0.750742 0.105809 74.266);
+  --elovio-source-59: oklch(0.596805 0.066031 59.542);
+  --elovio-source-60: oklch(0.766083 0.021136 150.009);
+  --elovio-source-61: oklch(0.777243 0.111952 85.314);
+  --elovio-source-62: oklch(0.523888 0.122749 28.900);
+  --elovio-source-63: oklch(0.607732 0.018445 156.634);
+  --elovio-source-64: oklch(0.937330 0.010724 136.561);
+  --elovio-source-65: oklch(0.918972 0.015351 90.241);
+  --elovio-source-66: oklch(0.745773 0.044011 140.823);
+  --elovio-source-67: oklch(0.591496 0.084710 48.328);
+  --elovio-source-68: oklch(0.685041 0.101653 61.809);
+  --elovio-source-69: oklch(0.541839 0.082479 55.747);
+  --elovio-source-70: oklch(0.571502 0.062975 59.163);
+  --elovio-source-71: oklch(0.587546 0.157635 27.600);
+  --elovio-source-72: oklch(0.763927 0.130158 70.899);
+  --elovio-source-73: oklch(0.692061 0.098777 122.468);
+  --elovio-source-74: oklch(0.804448 0.021212 145.375);
+  --elovio-source-75: oklch(0.507288 0.024927 162.330);
+  --elovio-source-76: oklch(0.877757 0.032827 164.124);
+  --elovio-source-77: oklch(0.801372 0.071567 77.807);
+  --elovio-source-78: oklch(0.645313 0.071956 72.526);
+  --elovio-source-79: oklch(0.681856 0.101719 61.777);
+  --elovio-source-80: oklch(0.941590 0.012974 141.810);
+  --elovio-source-81: oklch(0.522020 0.119730 30.786);
+  --elovio-source-82: oklch(0.585101 0.021389 162.489);
+  --elovio-source-83: oklch(0.591649 0.062503 59.266);
+  --elovio-source-84: oklch(0.811597 0.023343 151.567);
+  --elovio-source-85: oklch(0.645759 0.017552 148.286);
+  --elovio-source-86: oklch(0.925983 0.010269 131.363);
+  --elovio-source-87: oklch(0.986498 0.004082 121.559);
+  --elovio-source-88: oklch(0.921458 0.019247 152.801);
+  --elovio-source-89: oklch(0.481529 0.099610 49.598);
+  --elovio-source-90: oklch(0.753610 0.064647 72.111);
+  --elovio-source-91: oklch(0.921742 0.016613 91.559);
+  --elovio-source-92: oklch(0.791912 0.058576 210.016);
+  --elovio-source-93: oklch(0.658069 0.027009 160.212);
+  --elovio-source-94: oklch(0.744342 0.072621 216.695);
+  --elovio-source-95: oklch(0.563095 0.018797 162.325);
+  --elovio-source-96: oklch(0.722122 0.041319 68.346);
+  --elovio-source-97: oklch(0.484407 0.071251 42.295);
+  --elovio-source-98: oklch(0.765971 0.025264 154.994);
+  --elovio-source-99: oklch(0.966983 0.016422 91.551);
+  --elovio-source-100: oklch(0.941382 0.009036 134.874);
+  --elovio-source-101: oklch(0.939123 0.008593 128.563);
+  --elovio-source-102: oklch(0.491235 0.132011 26.554);
+  --elovio-source-103: oklch(0.469916 0.059378 50.386);
+  --elovio-source-104: oklch(0.628499 0.077203 142.889);
+  --elovio-source-105: oklch(0.719263 0.085966 66.915);
+  --elovio-source-106: oklch(0.552056 0.072994 56.587);
+  --elovio-source-107: oklch(0.328579 0.029381 167.733);
+  --elovio-source-108: oklch(0.924478 0.031817 78.156);
+  --elovio-source-109: oklch(0.340987 0.008982 88.740);
+  --elovio-source-110: oklch(0.668594 0.102607 45.501);
+  --elovio-source-111: oklch(0.895506 0.072426 83.142);
+  --elovio-source-112: oklch(0.557312 0.102296 38.896);
+  --elovio-source-113: oklch(0.576967 0.094015 149.748);
+  --elovio-source-114: oklch(0.780217 0.084929 20.982);
+  --elovio-source-115: oklch(0.861449 0.072753 63.899);
+  --elovio-source-116: oklch(0.762430 0.020967 154.771);
+  --elovio-source-117: oklch(0.902009 0.015175 164.695);
+  --elovio-source-118: oklch(0.708308 0.034380 160.891);
+  --elovio-source-119: oklch(0.712939 0.018697 153.425);
+  --elovio-source-120: oklch(0.770172 0.023485 155.777);
+  --elovio-source-121: oklch(0.785835 0.066964 68.853);
+  --elovio-source-122: oklch(0.726825 0.019261 142.788);
+  --elovio-source-123: oklch(0.399865 0.035872 165.551);
+  --elovio-source-124: oklch(0.554038 0.022558 159.266);
+  --background: oklch(0.972529 0.006702 97.351);
+  --foreground: oklch(0.329138 0.047117 171.308);
+  --primary: oklch(0.388330 0.055039 166.476);
+  --primary-foreground: oklch(1 0 0);
+}
+.elovio-app { min-height: 100dvh; display: flex; flex-direction: column; }
+.elovio-loading { min-height: 100dvh; display: grid; place-items: center; font: 700 48px Arial, sans-serif; color: var(--foreground); }
+.elovio-file-label { display: flex; flex-direction: column; gap: 10px; font-weight: 600; color: var(--foreground); }
+.elovio-file-label input { max-width: 100%; }
+.elovio-document-image { width: 100%; max-height: 480px; object-fit: contain; }
+/* Google sign-in button: light theme per Google branding guidelines. */
+.elovio-google-button { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 44px; padding: 0 12px; border: 1px solid #747775; border-radius: 8px; background: #FFFFFF; color: #1F1F1F; font: 500 14px/20px sans-serif; cursor: pointer; }
+.elovio-google-button:disabled { opacity: 0.5; cursor: default; }

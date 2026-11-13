@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1794228463134,
+      "tag": "0000_elovio_accounts_learning",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1794228514075,
+      "tag": "0001_elovio_provider_quotas",
+      "breakpoints": true
+    }
+  ]
+}

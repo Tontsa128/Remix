@@ -1,0 +1,82 @@
+{
+  "source": "https://github.com/Tontsa128/Kielikurssi",
+  "capabilities": [
+    {
+      "capability": "learning interface and local exercises",
+      "source": "imported React Native web UI",
+      "outcome": "preserve",
+      "status": "verified",
+      "next_action": "repeat regression tests after service changes"
+    },
+    {
+      "capability": "database schema and authorization",
+      "source": "source migrations",
+      "outcome": "migrate to Cloud",
+      "status": "verified",
+      "next_action": "New email/password sign-in, profile/preferences/progress readback and signout isolation verified on desktop and phone. Email confirmation delivery and original-user migration remain unverified."
+    },
+    {
+      "capability": "auth identities and existing records",
+      "source": "original account store",
+      "outcome": "migrate",
+      "status": "pending",
+      "next_action": "original user and table exports are not supplied"
+    },
+    {
+      "capability": "email/password accounts",
+      "source": "source sign-in UI",
+      "outcome": "Cloud auth",
+      "status": "verified",
+      "next_action": "New email/password sign-in, profile/preferences/progress readback and signout isolation verified on desktop and phone. Email confirmation delivery and original-user migration remain unverified."
+    },
+    {
+      "capability": "Gemini tutor",
+      "source": "GEMINI_API_KEY, GEMINI_MODEL",
+      "outcome": "replaced with Lovable AI per user choice",
+      "status": "verified",
+      "next_action": "none — tutor, translation, speech, transcription and Understand verified end-to-end on Lovable AI"
+    },
+    {
+      "capability": "Google Translation and TTS",
+      "source": "GOOGLE_TRANSLATE_API_KEY, GOOGLE_TTS_API_KEY",
+      "outcome": "replaced with Lovable AI per user choice",
+      "status": "verified",
+      "next_action": "none — tutor, translation, speech, transcription and Understand verified end-to-end on Lovable AI"
+    },
+    {
+      "capability": "OpenAI realtime recognition",
+      "source": "OPENAI_API_KEY",
+      "outcome": "replaced with Lovable AI per user choice",
+      "status": "verified",
+      "next_action": "none — tutor, translation, speech, transcription and Understand verified end-to-end on Lovable AI"
+    },
+    {
+      "capability": "original photos and illustrations",
+      "source": "Wikimedia and Elovio",
+      "outcome": "preserve",
+      "status": "verified",
+      "next_action": "none"
+    },
+    {
+      "capability": "Understand text/image assistance",
+      "source": "source contains only planned feature",
+      "outcome": "replaced with Lovable AI per user choice",
+      "status": "verified",
+      "next_action": "none — tutor, translation, speech, transcription and Understand verified end-to-end on Lovable AI"
+    },
+    {
+      "capability": "native Android/iOS release and monitoring",
+      "source": "Expo/Firebase",
+      "outcome": "outside web runtime",
+      "status": "blocked",
+      "next_action": "native build and physical-device verification are not supported in this web project"
+    },
+    {
+      "capability": "public API compatibility and cutover",
+      "source": "Vercel /api/ai endpoints",
+      "outcome": "preserve URL contracts in TanStack",
+      "status": "verified",
+      "next_action": "publish for external clients"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Remix Kielikurssi",
+  "description": "Imported from GitHub: Tontsa128/Kielikurssi",
+  "version": "1.0.0",
+  "permissions": [
+    "microphone"
+  ],
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

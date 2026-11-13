@@ -1,0 +1,50 @@
+{
+  "name": "elovio",
+  "version": "0.1.0",
+  "private": true,
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "typecheck": "tsc --noEmit",
+    "doctor": "expo-doctor",
+    "test": "tsx --test tests/*.test.ts",
+    "build:android:development": "eas build --platform android --profile development",
+    "build:android:preview": "eas build --platform android --profile preview",
+    "build:android:production": "eas build --platform android --profile production",
+    "test:rls": "tsx tests/integration/supabase-rls.integration.ts"
+  },
+  "dependencies": {
+    "@expo/metro-runtime": "~58.0.17",
+    "@react-native-firebase/app": "^27.1.0",
+    "@react-native-firebase/crashlytics": "^27.1.0",
+    "@supabase/supabase-js": "2.119.0",
+    "expo": "~58.0.23",
+    "expo-dev-client": "~58.0.18",
+    "expo-sqlite": "~58.0.2",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-native": "0.88.1",
+    "react-native-web": "^0.21.4",
+    "expo-audio": "~58.0.11",
+    "expo-asset": "~58.0.20",
+    "expo-file-system": "~58.0.13"
+  },
+  "devDependencies": {
+    "@types/react": "~19.3.0",
+    "typescript": "~6.0.3",
+    "expo-doctor": "^1.21.6",
+    "@types/node": "^22.13.14",
+    "tsx": "^4.20.6"
+  },
+  "overrides": {
+    "@grpc/grpc-js": "^1.13.6"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "protobufjs@7.6.6": true,
+    "@firebase/util@1.15.3": true
+  }
+}
