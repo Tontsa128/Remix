@@ -18,7 +18,7 @@ export const Route = createFileRoute("/api/live-token")({
             );
           }
 
-          const apiKey = process.env["GEMINI_API_KEY"] || process.env["API_KEY"];
+          const apiKey = process.env["GEMINI_API_KEY"];
           if (!apiKey) {
             return Response.json(
               { error: "missing_api_key", message: "Palvelimen käännösavain puuttuu." },
