@@ -304,15 +304,6 @@ export default function ElovioApp() {
     clearShareQueryFromUrl();
   }, [clearShareQueryFromUrl]);
 
-  const firstName = (() => {
-    const full =
-      user?.user_metadata?.full_name || user?.name || user?.email || "";
-    const trimmed = full.trim();
-    if (!trimmed) return null;
-    if (trimmed.includes("@")) return trimmed.split("@")[0] ?? null;
-    return trimmed.split(/\s+/)[0] ?? null;
-  })();
-
   const level = getComputedLevel(progress);
   const remainingLiveSeconds = getRemainingLiveSeconds(progress);
 
@@ -418,7 +409,6 @@ export default function ElovioApp() {
           {activeTab === "home" && (
             <HomeScreen
               progress={progress}
-              firstName={firstName}
               onContinueExercise={handleContinueExercise}
               onStartListeningSchool={handleStartListeningSchool}
               onShareLearningPath={handleShareLearningPath}
