@@ -80,7 +80,7 @@ export function HomeScreen({
               Opiskeltava kieli: {targetName}
             </p>
             <h1 className="mt-1 text-2xl font-bold tracking-tight">
-              "Tervetuloa Elovioon!"
+              Tervetuloa Elovioon!
             </h1>
           </div>
           <button
