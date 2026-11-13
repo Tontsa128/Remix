@@ -35,7 +35,9 @@ jobs:
         run: bun run lint
       - name: Unit and integration tests
         run: bun run test
-      - name: TypeScript
-        run: bun run typecheck
+      # TanStack generates src/routeTree.gen.ts during the Vite build.
+      # Build first so TypeScript checks the current route tree, not a stale generated file.
       - name: Production build
         run: bun run build
+      - name: TypeScript
+        run: bun run typecheck
