@@ -22,7 +22,6 @@ describe("HomeScreen", () => {
     render(
       <HomeScreen
         progress={progress}
-        firstName="Toni"
         onContinueExercise={vi.fn()}
         onStartListeningSchool={onStartListeningSchool}
         onNavigateTab={vi.fn()}
@@ -33,6 +32,7 @@ describe("HomeScreen", () => {
       name: /Aloita pelkkä kuuntelukoulu/i,
     });
     expect(listeningBtn).toBeInTheDocument();
+    expect(screen.getByText("Tervetuloa Elovioon!")).toBeInTheDocument();
 
     fireEvent.click(listeningBtn);
     expect(onStartListeningSchool).toHaveBeenCalledTimes(1);
@@ -60,7 +60,6 @@ describe("HomeScreen", () => {
     render(
       <HomeScreen
         progress={progress}
-        firstName="Toni"
         onContinueExercise={vi.fn()}
         onStartListeningSchool={vi.fn()}
         onShareLearningPath={onShareLearningPath}

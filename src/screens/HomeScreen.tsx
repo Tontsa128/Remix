@@ -24,7 +24,6 @@ import type { TabId, UserProgressState } from "@/types/elovio";
 
 interface HomeScreenProps {
   progress: UserProgressState;
-  firstName?: string | null;
   onContinueExercise: () => void;
   onStartListeningSchool: () => void;
   onShareLearningPath?: () => Promise<{ url: string; copied: boolean }>;
@@ -33,7 +32,6 @@ interface HomeScreenProps {
 
 export function HomeScreen({
   progress,
-  firstName,
   onContinueExercise,
   onStartListeningSchool,
   onShareLearningPath,
@@ -74,7 +72,7 @@ export function HomeScreen({
 
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-4 px-4 pb-24 pt-4">
-      {/* Tervehdys ja oppimispolun jako */}
+      {/* Yleinen tervehdys kaikille käyttäjille ja oppimispolun jako */}
       <section className="rounded-3xl bg-[#1E3F35] p-5 text-white shadow-sm">
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
@@ -82,7 +80,7 @@ export function HomeScreen({
               Opiskeltava kieli: {targetName}
             </p>
             <h1 className="mt-1 text-2xl font-bold tracking-tight">
-              {firstName ? `Hei, ${firstName}` : "Hei, tervetuloa opiskelemaan"}
+              Tervetuloa Elovioon!
             </h1>
           </div>
           <button
