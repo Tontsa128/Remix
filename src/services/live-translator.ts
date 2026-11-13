@@ -151,14 +151,20 @@ export class DualLiveTranslator {
     this.activeSpeaker = speaker;
   }
 
-  public async start(existingMicStream: MediaStream): Promise<void> {
+  public async start(
+    existingMicStream: MediaStream,
+    unlockedInputContext?: AudioContext,
+  ): Promise<void> {
     this.isStopping = false;
     this.micStream = existingMicStream;
+    // Keep the context created/resumed synchronously from the user's tap.
+    // Mobile Chromium may reject autoplay activation after network awaits.
+    this.inputCtx = unlockedInputContext ?? null;
     this.callbacks.onStatus("connecting");
 
     try {
-      await this.connectBothSessions();
       await this.setupAudioPipeline(existingMicStream);
+      await this.connectBothSessions();
       this.callbacks.onStatus("listening");
     } catch (err) {
       const msg =
@@ -226,12 +232,24 @@ export class DualLiveTranslator {
   }
 
   private async connectBothSessions(): Promise<void> {
-    const [toOther, toNative] = await Promise.all([
+    const results = await Promise.allSettled([
       this.openSingleSession(this.otherLang, "self", this.nativeLang),
       this.openSingleSession(this.nativeLang, "other", this.otherLang),
     ]);
-    this.sessionToOther = toOther;
-    this.sessionToNative = toNative;
+    const opened = results
+      .filter((result): result is PromiseFulfilledResult<Session> => result.status === "fulfilled")
+      .map((result) => result.value);
+    if (results.some((result) => result.status === "rejected")) {
+      for (const session of opened) {
+        try { session.close(); } catch { /* Best-effort cleanup */ }
+      }
+      const failed = results.find((result) => result.status === "rejected");
+      throw failed?.status === "rejected"
+        ? failed.reason
+        : new Error("Live-istuntoa ei voitu avata.");
+    }
+    this.sessionToOther = results[0].status === "fulfilled" ? results[0].value : null;
+    this.sessionToNative = results[1].status === "fulfilled" ? results[1].value : null;
   }
 
   private async handleDisconnect(): Promise<void> {
@@ -406,7 +424,10 @@ export class DualLiveTranslator {
       throw new Error("Selain ei tue Web Audio -äänenkäsittelyä.");
     }
 
-    this.inputCtx = new AudioCtx({ sampleRate: 16000 });
+    this.inputCtx ??= new AudioCtx();
+    if (this.inputCtx.state === "closed") {
+      this.inputCtx = new AudioCtx();
+    }
     if (this.inputCtx.state === "suspended") {
       await this.inputCtx.resume();
     }
