@@ -199,11 +199,31 @@ export function InterpreterScreen({
         return;
       }
 
+      // Unlock Web Audio synchronously in the tap handler, before permission
+      // prompts and token/network requests can consume the browser activation.
+      const AudioCtx = window.AudioContext ||
+        (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+      if (!AudioCtx) {
+        setStatus("error");
+        setErrorMessage("Tämä selain ei tue live-tulkin äänenkäsittelyä. Kokeile Chromea.");
+        return;
+      }
+      const unlockedInputContext = new AudioCtx();
+      try {
+        await unlockedInputContext.resume();
+      } catch {
+        await unlockedInputContext.close().catch(() => undefined);
+        setStatus("error");
+        setErrorMessage("Äänen käynnistys estyi. Napauta live-käännöksen aloitusta uudelleen ja salli ääni selaimessa.");
+        return;
+      }
+
       const micResult = await requestMicStream();
       const perm = await checkMicPermission();
       setMicPermission(perm);
 
       if (!micResult.ok || !micResult.stream) {
+        await unlockedInputContext.close().catch(() => undefined);
         setStatus("error");
         setErrorMessage(
           micResult.errorMessage ?? "Mikrofonia ei voitu käynnistää.",
@@ -267,7 +287,7 @@ export function InterpreterScreen({
       translator.setSpeaker(speaker);
       liveTranslatorRef.current = translator;
       setIsLiveActive(true);
-      await translator.start(micResult.stream);
+      await translator.start(micResult.stream, unlockedInputContext);
       return;
     }
 
