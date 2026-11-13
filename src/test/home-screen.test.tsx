@@ -60,7 +60,6 @@ describe("HomeScreen", () => {
     render(
       <HomeScreen
         progress={progress}
-        firstName="Toni"
         onContinueExercise={vi.fn()}
         onStartListeningSchool={vi.fn()}
         onShareLearningPath={onShareLearningPath}
