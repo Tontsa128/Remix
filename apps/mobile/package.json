@@ -36,7 +36,7 @@
     "@types/react": "~19.3.0",
     "typescript": "~6.0.3",
     "expo-doctor": "^1.21.6",
-    "@types/node": "^22.13.14",
+    "@types/node": "^26.6.6",
     "tsx": "^4.20.6"
   },
   "overrides": {
